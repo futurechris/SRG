@@ -9,3 +9,7 @@ autopublish
 insecure
 nemo64:bootstrap
 less
+meteorhacks:npm
+
+
+npm-container
