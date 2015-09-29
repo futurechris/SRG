@@ -1,0 +1,1 @@
+meteor run -p 3300 --settings settings.json
