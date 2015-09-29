@@ -1,15 +1,21 @@
 <template name="gamesheader">
-	<div class="container-fluid">
-		<div class="row-fluid">
-			<div class="col-xs-4">
-				{{ >mostDevActivity }}
-			</div>
-			<div class="col-xs-4">
-				{{ >nextCompleted }}
-			</div>
-			<div class="col-xs-4">
-				<h2>Third thing!</h2>
-			</div>
-		</div>
+	<div class="row">
+	  <div class="row-height">
+	    <div class="col-xs-4 col-height col-top">
+	      <div class="inside inside-full-height well">
+	        <div class="content">{{ >mostDevActivity }}</div>
+	      </div>
+	    </div>
+	    <div class="col-xs-4 col-height col-top">
+	      <div class="inside inside-full-height well">
+	        <div class="content">{{ >nextCompleted }}</div>
+	      </div>
+	    </div>
+	    <div class="col-xs-4 col-height col-top">
+	      <div class="inside inside-full-height well">
+	        <div class="content">{{ >mostRecentActivity }}</div>
+	      </div>
+	    </div>
+	   </div>
 	</div>
 </template>
