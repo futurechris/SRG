@@ -1,5 +1,13 @@
 <template name="rightbar">
 	<div class="well">
-  	<h2>Screenshots, dev activity, twitter, oh my!</h2>
+  	<div class="col-xs-12">
+  		{{ >recentScreenshotWidget }}
+  	</div>
+  	<div class="col-xs-12">
+  		{{ >devActivityLogWidget }}
+  	</div>
+  	<div class="col-xs-12">
+  		{{ >tweetWidget }}
+  	</div>
   </div>
 </template>
