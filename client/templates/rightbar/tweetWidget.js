@@ -4,6 +4,6 @@ Template.tweetWidget.helpers({
 		{
 			return Template.tweetWidgetTemplate;
 		}
-		return "";
+		return Template.emptyTemplate;
 	}
 });
