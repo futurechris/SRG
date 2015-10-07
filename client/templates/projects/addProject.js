@@ -12,7 +12,7 @@ Template.addProject.events({
 
 		var newProject = {
 			_name: event.target.projectname.value,
-			_public: event.target.projectpublic.value,
+			_public: event.target.projectpublic.checked,
 			_slug: event.target.projectslug.value,
 			_tags: event.target.projecttags.value,
 			_desc: event.target.projectdesc.value,
@@ -26,15 +26,16 @@ Template.addProject.events({
 		var featIdx = 0;
 		while(found)
 		{
-			if(typeof(event.target["feature"+featIdx]) !== "undefined")
+			if(			typeof(event.target["feature"+featIdx]) !== "undefined"
+					&&	event.target["feature"+featIdx].length > 0)
 			{
 				featArr[featIdx] = event.target["feature"+featIdx].value;
-				featIdx++;
 			}
 			else
 			{
 				found = false;
 			}
+			featIdx++;
 		}
 
 		newProject._features = featArr;
