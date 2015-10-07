@@ -1,0 +1,6 @@
+<template name="projectTile">
+	<img src="{{ getTileImage }}" width="100%">
+	{{ _name }}{{ #if currentUser }}{{ #unless _public }} (Private) {{ /unless }}{{ /if }}
+	
+
+</template>

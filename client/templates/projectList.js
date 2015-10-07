@@ -7,9 +7,18 @@ Template.projectList.events({
 });
 
 Template.projectList.helpers({
-	getProjectList: function(){
+	getProjectList: function(user){
 		var limitPreference = Session.get("projectListLimit");
 		var sortPreference  = Session.get("projectListSort");
-		return Projects.find({}, {sort: sortPreference, limit: limitPreference})
+
+		if(user)
+		{
+			return Projects.find({}, {sort: sortPreference, limit: limitPreference})
+		}
+		else
+		{
+			return Projects.find({_public:true}, {sort: sortPreference, limit: limitPreference})
+		}
+		
 	}
 });

@@ -1,7 +1,12 @@
 <template name="projectList">
-	<div class="well">
-    {{ #each getProjectList 3 }}
+	<div>
+    <div class="well row">
+    {{ #each getProjectList currentUser }}
+      <div class="col-xs-4 well">
+        {{ >projectTile }}
+      </div>
     {{ /each }}
+    </div>
   	{{ #if currentUser }}
   		<addNewProject>
   			{{ > yield "addNewProject" }}
