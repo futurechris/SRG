@@ -5,6 +5,10 @@
 	padding: 20px;
 }
 
+.addfeaturelabel {
+  font-size: small;
+}
+
 /* From: http://www.minimit.com/articles/solutions-tutorials/bootstrap-3-responsive-columns-of-same-height */
 /* USAGE
 <div class="row">

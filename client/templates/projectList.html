@@ -1,5 +1,17 @@
 <template name="projectList">
 	<div class="well">
-  	<h2>Fancy a project? We got tons!</h2>
+    {{ #each getProjectList 3 }}
+    {{ /each }}
+  	{{ #if currentUser }}
+  		<addNewProject>
+  			{{ > yield "addNewProject" }}
+  		</addNewProject>
+  	{{ /if }}
   </div>
+</template>
+
+<template name="addNewProjectBtnTemplate">
+	<div>
+	  <button class="addNewProject">Add new project</button>
+	</div>
 </template>

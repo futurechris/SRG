@@ -8,16 +8,17 @@
 </template>
 -->
 <template name="main">
-  <div class="container-fluid col-lg-9 col-lg-offset-1">
+  <div class="container-fluid col-lg-10 col-lg-offset-1">
     <div class="row-fluid col-lg-12 srgbox">
       {{ >siteheader }}
+      {{ >loginButtons }}
     </div>
     <div class="row-fluid col-lg-12 srgbox">
       {{ >gamesheader }}
     </div>
     <div class="row-fluid col-lg-8 srgbox">
       <bodycontent>
-        {{ > yield "bodycontent" }}
+        {{ >yield "bodycontent" }}
       </bodycontent>
     </div>
     <div class="row-fluid col-lg-4 srgbox">

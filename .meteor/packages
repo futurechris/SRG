@@ -27,3 +27,8 @@ ejson
 spacebars
 check
 iron:router
+deepwell:bootstrap-datepicker2
+perak:markdown
+accounts-base
+accounts-ui
+accounts-password
