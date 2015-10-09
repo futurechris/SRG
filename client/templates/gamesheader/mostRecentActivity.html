@@ -1,5 +1,7 @@
 <template name="mostRecentActivity">
-	<div>
-  	<h2>Most Recent Activity!</h2>
+  <div>
+  	{{ #with getMostRecentlyActiveProject }}
+  		{{ >headerProjectTile }}
+  	{{ /with }}
   </div>
 </template>

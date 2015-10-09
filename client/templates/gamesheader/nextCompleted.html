@@ -1,5 +1,7 @@
 <template name="nextCompleted">
-	<div>
-  	<h2>Next to be Completed!</h2>
+  <div>
+  	{{ #with getNextCompletedProject }}
+  		{{ >headerProjectTile }}
+  	{{ /with }}
   </div>
 </template>

@@ -1,0 +1,6 @@
+<template name="headerProjectTile">
+	<div style="overflow:hidden; max-height:128px">
+		<img src="{{ getHeaderTileImage }}" width="100%">
+		{{ _name }}{{ #if currentUser }}{{ #unless _public }} (Private) {{ /unless }}{{ /if }}
+	</div>
+</template>
