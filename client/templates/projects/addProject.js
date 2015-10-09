@@ -3,10 +3,12 @@ Template.addProject.events({
 		event.preventDefault();
 		Session.set("featurearrayLength", Session.get("featurearrayLength")+1);
 	},
+
 	"click .displayPreview": function(event, template){
 		event.preventDefault();
 		Session.set("descmarkdown", template.$('#projectdesc').val());
 	},
+
 	"submit form": function(event, template){
 		event.preventDefault();
 
@@ -41,6 +43,7 @@ Template.addProject.events({
 		newProject._features = featArr;
 
 		Projects.insert(newProject);
+		Router.go('/projects');
 	}
 });
 
@@ -57,6 +60,7 @@ Template.addProject.helpers({
 		}
 		return arr;
 	},
+
 	getDescriptionMarkdown: function(){
 		return Session.get("descmarkdown");
 	}
