@@ -1,5 +1,11 @@
 Template.mostDevActivity.helpers({
 	getMostActiveProject: function(){
-		return Projects.findOne({_public:true}, {sort: [["_name", "desc"]]})
+		var proj = Projects.findOne({_public:true}, {sort: [["_name", "desc"]]});
+		if(proj)
+		{
+			proj.headerIdx = "d";
+		}
+		
+		return proj;
 	}
 })

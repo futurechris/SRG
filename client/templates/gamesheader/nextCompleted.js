@@ -1,5 +1,10 @@
 Template.nextCompleted.helpers({
 	getNextCompletedProject: function(){
-		return Projects.findOne({_public:true}, {sort: [["_start", "asc"]]})
+		var proj = Projects.findOne({_public:true}, {sort: [["_start", "desc"]]});
+		if(proj)
+		{
+			proj.headerIdx = "c";
+		}
+		return proj;
 	}
 })
