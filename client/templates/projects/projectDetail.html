@@ -1,0 +1,10 @@
+<template name="projectDetail">
+	{{ #if allowedToView _public }}
+	<div>
+		<h1>{{ _name }}</h1>
+			{{ #markdown }}{{ _desc }}{{ /markdown }}
+	</div>
+	{{ else }}
+		{{ > postfeed }}
+	{{ /if }}
+</template>
