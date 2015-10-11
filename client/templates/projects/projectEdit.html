@@ -1,12 +1,9 @@
-<template name="projectDetail">
-	{{ #if allowedToView _public }}
+<template name="projectEdit">
+	{{ #if currentUser }}
 	<div class="well">
 		<h1>{{ _name }}</h1>
 		{{#unless _public}}
 			(Private)
-			<div>
-				<button class="editProject" data-slug="{{_slug}}">Edit/Update Project</button>
-			</div>
 		{{/unless}}
 		{{ #markdown }}{{ _desc }}{{ /markdown }}
 	</div>
