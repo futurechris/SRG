@@ -1,8 +1,8 @@
 <template name="headerProjectTile">
 	<div style="overflow:hidden; max-height:128px">
-		<a href="{{ getHeaderTileImage }}" data-lightbox="image{{ headerIdx }}">
+		<a href="/projects/p/{{ _slug }}">
 			<img src="{{ getHeaderTileImage }}" width="100%">
+			{{ _name }}{{ #if currentUser }}{{ #unless _public }} (Private) {{ /unless }}{{ /if }}
 		</a>
-		{{ _name }}{{ #if currentUser }}{{ #unless _public }} (Private) {{ /unless }}{{ /if }}
 	</div>
 </template>
