@@ -1,6 +1,7 @@
 <template name="projectTile">
+	<a href="/projects/p/{{_slug}}">
 	<img src="{{ getTileImage }}" width="100%">
-	{{ _name }}{{ #if currentUser }}{{ #unless _public }} (Private) {{ /unless }}{{ /if }}
+	{{ _name }}{{ #if currentUser }}{{ #unless _public }} (Private) {{ /unless }}{{ /if }}</a>
 	
 
 </template>
