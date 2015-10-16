@@ -29,9 +29,13 @@ Template.addProject.events({
 		while(found)
 		{
 			if(			typeof(event.target["feature"+featIdx]) !== "undefined"
-					&&	event.target["feature"+featIdx].length > 0)
+					&&	event.target["feature"+featIdx].value.length > 0)
 			{
-				featArr[featIdx] = event.target["feature"+featIdx].value;
+				featArr[featIdx] = 
+					{
+						_idx: featIdx,
+						_feat: event.target["feature"+featIdx].value
+					}
 			}
 			else
 			{
@@ -39,7 +43,6 @@ Template.addProject.events({
 			}
 			featIdx++;
 		}
-
 		newProject._features = featArr;
 
 		Projects.insert(newProject);
