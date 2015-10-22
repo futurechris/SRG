@@ -32,10 +32,12 @@
 		<h1>{{ _name }}</h1>
 		{{#unless _public}}
 			(Private)
+		{{/unless}}
+		{{ #if currentUser }}
 			<div>
 				<button class="editProject" data-slug="{{_slug}}">Edit/Update Project</button>
 			</div>
-		{{/unless}}
+		{{ /if }}
 		{{ #markdown }}{{ _desc }}{{ /markdown }}
 	</div>
 	{{ else }}
