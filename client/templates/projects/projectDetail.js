@@ -1,6 +1,15 @@
 Template.projectDetail.helpers({
 	allowedToView: function(_public){
 		return _public || Meteor.user();
+	},
+	existingfeaturearray: function(context){
+		if(typeof(context) !== "undefined"
+			&& context != null)
+		{
+			return context._features;
+		}
+
+		return [];
 	}
 });
 

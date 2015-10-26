@@ -39,8 +39,21 @@
 			</div>
 		{{ /if }}
 		{{ #markdown }}{{ _desc }}{{ /markdown }}
+		<div class="well">
+			<ul>
+			{{ #each existingfeaturearray this }}
+				{{ > displayfeature }}
+			{{ /each }}
+			</ul>
+		</div>
 	</div>
 	{{ else }}
 		{{ > postfeed }}
 	{{ /if }}
+</template>
+
+<template name="displayfeature">
+	<div>
+		<li>{{ _feat }}</li>
+	</div>
 </template>

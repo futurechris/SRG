@@ -54,13 +54,39 @@ Template.projectEdit.helpers({
 		if(typeof(context) !== "undefined"
 			&& context != null)
 		{
-			
+			var count = Session.get("featurearrayLength");
+			for(var i=context._features.length; i<count; i++)
+			{
+				context._features[i] = {
+					_idx: i
+				};
+			}
 			return context._features;
 		}
-		return;
+
+		return featurearray();
+	},
+
+	featurearray: function(){
+		var arr = [];
+		// TODO: switch to Session.equals()?
+		var count = Session.get("featurearrayLength");
+		for(var i=0; i<count; i++)
+		{
+			arr[i] = {
+				_idx: i
+			};
+		}
+		return arr;
 	},
 
 	getDescriptionMarkdown: function(){
 		return Session.get("descmarkdown");
 	}
 });
+
+Template.projectEdit.rendered = function() {
+	Session.setDefault("featurearrayLength", 3);
+	Session.setDefault("descmarkdown","");
+  this.$('.datepicker').datepicker();
+}
