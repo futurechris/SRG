@@ -10,6 +10,10 @@ Template.projectDetail.helpers({
 		}
 
 		return [];
+	},
+	projectActivity: function(context, count)
+	{
+		return ActivityLog.find({_projectID:context._id},{sort: _logDate, limit: count});
 	}
 });
 
