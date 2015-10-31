@@ -70,7 +70,7 @@ Template.addProject.helpers({
 });
 
 Template.addProject.rendered = function() {
-	Session.setDefault("featurearrayLength", 3);
-	Session.setDefault("descmarkdown","");
+	Session.set("featurearrayLength", 3);
+	Session.set("descmarkdown","");
   this.$('.datepicker').datepicker();
 }

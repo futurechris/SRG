@@ -9,6 +9,11 @@
   font-size: small;
 }
 
+.activityLogEntry {
+  border-top: #ddd solid 1px;
+  padding: 10px;
+}
+
 /* From: http://www.minimit.com/articles/solutions-tutorials/bootstrap-3-responsive-columns-of-same-height */
 /* USAGE
 <div class="row">
