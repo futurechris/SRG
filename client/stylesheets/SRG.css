@@ -14,6 +14,23 @@
   padding: 10px;
 }
 
+.logSummaryDatePair {
+  line-height: 100%;
+  padding-bottom: 6px;
+}
+
+.logSummary {
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+.logDate {
+  font-size: 0.8em;
+  color: #888;
+  display: block;
+}
+
+
 /* From: http://www.minimit.com/articles/solutions-tutorials/bootstrap-3-responsive-columns-of-same-height */
 /* USAGE
 <div class="row">

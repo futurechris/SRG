@@ -69,7 +69,10 @@
 
 <template name="logEntry">
 	<div class="activityLogEntry">
-		{{ _date }}: {{ _summary }}
+		<div class="logSummaryDatePair">
+			<span class="logSummary">{{ _summary }}</span>
+			<span class="logDate">{{ _date }}</span>
+		</div>
 		{{ #markdown }}{{ _desc }}{{ /markdown }}
 	</div>
 </template>
