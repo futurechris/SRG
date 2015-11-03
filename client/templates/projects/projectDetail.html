@@ -5,27 +5,7 @@
 		<div class="col-xs-3 pull-right">
 			<center>
 			<div style="margin: 0px 0px 10px 0px">Changelog</div>
-			<div id="cal-heatmap"></div>
-			<script type="text/javascript">
-				var cal = new CalHeatMap();
-				var date = new Date();
-				date.setMonth(date.getMonth()-1);
-				cal.init({
-						itemSelector: "#cal-heatmap",
-						domain: "month",
-						subDomain: "x_day",
-						cellSize: 14,
-						subDomainTextFormat: "%d",
-						range: 2,
-						start: date,
-						displayLegend: false,
-						verticalOrientation: true,
-						label: {
-							offset: { x: 0, y: -5 },
-							height: 10
-						}
-				});
-			</script>
+			{{ >heatmap }}
 			</center>
 		</div>
 
@@ -115,4 +95,28 @@
 			</div>
 		</form>
 	</div>
+</template>
+
+<template name="heatmap">
+	<div id="cal-heatmap"></div>
+	<script type="text/javascript">
+		var cal = new CalHeatMap();
+		var date = new Date();
+		date.setMonth(date.getMonth()-1);
+		cal.init({
+				itemSelector: "#cal-heatmap",
+				domain: "month",
+				subDomain: "x_day",
+				cellSize: 14,
+				subDomainTextFormat: "%d",
+				range: 2,
+				start: date,
+				displayLegend: false,
+				verticalOrientation: true,
+				label: {
+					offset: { x: 0, y: -5 },
+					height: 10
+				}
+		});
+	</script>
 </template>

@@ -3,7 +3,7 @@ Template.projectDetail.helpers({
 		return _public || Meteor.user();
 	},
 
-	existingfeaturearray: function(context){
+	existingfeaturearray: function(	){
 		if(typeof(context) !== "undefined"
 			&& context != null)
 		{
@@ -16,7 +16,7 @@ Template.projectDetail.helpers({
 	projectActivity: function(context, count)
 	{
 		return ActivityLog.find({ _project:context._id }, {sort: [["_date", "desc"]], limit: count});
-	},
+	}
 });
 
 Template.projectDetail.events({
@@ -26,9 +26,50 @@ Template.projectDetail.events({
 	},
 });
 
-Template.projectDetail.rendered = function(){
+Template.heatmap.created = function(){
+	 var self = this;
+	 self.calData = new Blaze.ReactiveVar(self.data.calData);
 }
 
+// this is a bit of a mess right now... Sigh.
+Template.heatmap.rendered = function(){
+	var self = this;
+
+	self.autorun(function(){
+		var subscriptionsReady = self.subscriptionsReady(); 
+
+		if(subscriptionsReady)
+		{
+			var log = ActivityLog.find({ _project:self.data._id }, {sort: [["_date", "asc"]]});
+			var logArray = log.fetch();
+
+			var data = Template.currentData().calData;
+			if(typeof(data) === "undefined")
+			{
+				data = {};
+				self.calData.set(data);
+			}
+
+			// now iterate over log and transform it into the format CalHeatMap expects
+			var i = 0;
+			for(i=0; i<logArray.length; i++)
+			{
+				var dateSeconds = ""+(new Date(logArray[i]._date).valueOf()/1000);
+
+				if(typeof(data[dateSeconds]) === "undefined" )
+				{
+					data[dateSeconds] = 0;
+				}
+
+				data[dateSeconds]++;
+			}
+
+			self.calData.set(data);
+			cal.update(data);
+		}
+		// Session.set("calendarData", data);
+	});
+}
 
 
 Template.addLogEntry.helpers({
