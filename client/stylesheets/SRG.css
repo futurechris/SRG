@@ -14,6 +14,10 @@
   padding: 10px;
 }
 
+.activityLogBtn {
+  margin-left: 10px;
+}
+
 .logSummaryDatePair {
   line-height: 100%;
   padding-bottom: 6px;

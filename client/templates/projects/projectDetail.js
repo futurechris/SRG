@@ -26,6 +26,10 @@ Template.projectDetail.events({
 	},
 });
 
+Template.projectDetail.onRendered(function(){
+	Session.setDefault("editingLogEntries", []);
+});
+
 Template.heatmap.created = function(){
 	 var self = this;
 	 self.calData = new Blaze.ReactiveVar(self.data.calData);
@@ -56,6 +60,11 @@ Template.heatmap.rendered = function(){
 			{
 				var dateSeconds = ""+(new Date(logArray[i]._date).valueOf()/1000);
 
+				if(dateSeconds.length == 0)
+				{
+					continue;
+				}
+
 				if(typeof(data[dateSeconds]) === "undefined" )
 				{
 					data[dateSeconds] = 0;
@@ -67,11 +76,112 @@ Template.heatmap.rendered = function(){
 			self.calData.set(data);
 			cal.update(data);
 		}
-		// Session.set("calendarData", data);
 	});
 }
 
+Template.logEntry.helpers({
+	editingEntry: function(context){
+		var editList = Session.get("editingLogEntries");
 
+		if($.inArray(context._id, editList) != -1)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	},
+
+	getDescriptionMarkdown: function(){
+		return Session.get("descmarkdown");
+	},
+});
+
+Template.logEntry.events({
+	"submit form": function(event, template){
+		event.preventDefault();
+
+		var activityid = event.target.activityid.value;
+		console.log(activityid);
+
+		// submit changes
+		var newActivity = {
+			_project: event.target.projectid.value,
+			_date: 		event.target.activitydate.value,
+			_summary: event.target.activitysummary.value,
+			_desc: 		event.target.activitydesc.value
+		};
+
+		var modifier = {
+			$set: {
+				_date: 	event.target.activitydate.value,
+				_summary: event.target.activitysummary.value,
+				_desc: 		event.target.activitydesc.value
+			}
+		};
+
+		ActivityLog.update({_id:activityid}, modifier);
+		Session.set("descmarkdown","");
+
+		// remove this thing from the edit list
+		var editList = Session.get("editingLogEntries");
+		var editIdx = editList.indexOf(event.target.activityid.value);
+		if(editIdx > -1)
+		{
+			editList.splice(editIdx, 1);
+		}
+		Session.set("editingLogEntries", editList);
+	},
+
+	"click .saveEdits": function(event, template){
+		event.preventDefault();
+
+		// remove this thing from the edit list
+		var editList = Session.get("editingLogEntries");
+		var editIdx = editList.indexOf(event.target.value);
+		if(editIdx > -1)
+		{
+			editList.splice(editIdx, 1);
+		}
+		Session.set("editingLogEntries", editList);
+
+		// submit changes
+	},
+
+	"click .cancelEdits": function(event, template){
+		event.preventDefault();
+
+		// remove this from the edit list
+		var editList = Session.get("editingLogEntries");
+		var editIdx = editList.indexOf(event.target.value);
+		if(editIdx > -1)
+		{
+			editList.splice(editIdx, 1);
+		}
+		Session.set("editingLogEntries", editList);
+	},
+
+	"click .editEntry": function(event, template){
+		event.preventDefault();
+		var editList = Session.get("editingLogEntries");
+		if($.inArray(event.target.value, editList) == -1)
+		{
+			editList.push(event.target.value);
+		}
+
+		Session.set("editingLogEntries", editList);
+	},
+
+	"click .displayPreview": function(event, template){
+		event.preventDefault();
+		console.log("CDP");
+		console.log(template.$('#activitydesc'));
+		console.log(template.$('#activitydesc').val());
+		Session.set("descmarkdown", template.$('#activitydesc').val());
+	},
+
+});
 Template.addLogEntry.helpers({
 	getDescriptionMarkdown: function(){
 		return Session.get("descmarkdown");
@@ -86,8 +196,6 @@ Template.addLogEntry.events({
 
 	"submit form": function(event, template){
 		event.preventDefault();
-
-		var temp = "";
 
 		var newActivity = {
 			_project: event.target.projectid.value,
@@ -108,5 +216,5 @@ Template.addLogEntry.events({
 Template.addLogEntry.rendered = function(){
 	Session.setDefault("descmarkdown","");
 	Session.set("descmarkdown","");
-  this.$('.datepicker').datepicker();
+  // this.$('.datepicker').datepicker();
 }
