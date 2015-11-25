@@ -79,6 +79,17 @@ Template.heatmap.rendered = function(){
 	});
 }
 
+Template.logEntry.created = function(){
+	this.testid = new Date();
+	this.descmarkdown = new ReactiveVar("");
+}
+
+// Template.logEntry.rendered = function(){
+// 	Session.setDefault("editdescmarkdown","");
+// 	Session.set("editdescmarkdown","");
+//   // this.$('.datepicker').datepicker();
+// }
+
 Template.logEntry.helpers({
 	editingEntry: function(context){
 		var editList = Session.get("editingLogEntries");
@@ -94,7 +105,7 @@ Template.logEntry.helpers({
 	},
 
 	getDescriptionMarkdown: function(){
-		return Session.get("descmarkdown");
+		return Template.instance().descmarkdown.get();
 	},
 });
 
@@ -103,26 +114,18 @@ Template.logEntry.events({
 		event.preventDefault();
 
 		var activityid = event.target.activityid.value;
-		console.log(activityid);
 
 		// submit changes
-		var newActivity = {
-			_project: event.target.projectid.value,
-			_date: 		event.target.activitydate.value,
-			_summary: event.target.activitysummary.value,
-			_desc: 		event.target.activitydesc.value
-		};
-
 		var modifier = {
 			$set: {
-				_date: 	event.target.activitydate.value,
+				_date: 		(new Date(event.target.activitydate.value)).toISOString().slice(0,10), // nice-format date
 				_summary: event.target.activitysummary.value,
 				_desc: 		event.target.activitydesc.value
 			}
 		};
 
 		ActivityLog.update({_id:activityid}, modifier);
-		Session.set("descmarkdown","");
+		template.descmarkdown.set("");
 
 		// remove this thing from the edit list
 		var editList = Session.get("editingLogEntries");
@@ -175,31 +178,33 @@ Template.logEntry.events({
 
 	"click .displayPreview": function(event, template){
 		event.preventDefault();
-		console.log("CDP");
-		console.log(template.$('#activitydesc'));
-		console.log(template.$('#activitydesc').val());
-		Session.set("descmarkdown", template.$('#activitydesc').val());
+
+		template.descmarkdown.set($(event.currentTarget).parent().parent().find('#activitydesc').val());
 	},
 
 });
+
+
+
 Template.addLogEntry.helpers({
 	getDescriptionMarkdown: function(){
-		return Session.get("descmarkdown");
+		return Template.instance().descmarkdown.get();
 	},
 });
 
 Template.addLogEntry.events({
 	"click .displayPreview": function(event, template){
 		event.preventDefault();
-		Session.set("descmarkdown", template.$('#activitydesc').val());
+
+		template.descmarkdown.set($(event.currentTarget).parent().parent().find('#activitydesc').val());
 	},
 
 	"submit form": function(event, template){
 		event.preventDefault();
-
+		
 		var newActivity = {
 			_project: event.target.projectid.value,
-			_date: 		event.target.activitydate.value,
+			_date: 		(new Date(event.target.activitydate.value)).toISOString().slice(0,10), // nice-format date
 			_summary: event.target.activitysummary.value,
 			_desc: 		event.target.activitydesc.value
 		};
@@ -209,12 +214,11 @@ Template.addLogEntry.events({
 		event.target.activitydate.value = "";
 		event.target.activitysummary.value = "";
 		event.target.activitydesc.value = "";
-		Session.set("descmarkdown","");
+		template.descmarkdown.set("");
 	}
 });
 
-Template.addLogEntry.rendered = function(){
-	Session.setDefault("descmarkdown","");
-	Session.set("descmarkdown","");
-  // this.$('.datepicker').datepicker();
+Template.addLogEntry.created = function(){
+	this.testid = new Date();
+	this.descmarkdown = new ReactiveVar("");
 }

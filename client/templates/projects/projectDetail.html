@@ -48,7 +48,7 @@
 </template>
 
 <template name="logEntry">
-	<div class="activityLogEntry">
+	<div>
 		{{ #if editingEntry this }}
 			<div class="logSummaryDatePair">
 				<form role="form" class="form-horizontal">
@@ -75,8 +75,8 @@
 						</div>
 					</div>
 					<div>
-						<button class="col-sm-offset-2 displayPreview">Preview Description</button>
-						<button type="submit" class="col-sm-offset-2 submitEditActivity pull-right">Submit</button>
+						<button class="col-sm-offset-2 displayPreview" value="desc{{_id}}">Preview Description</button>
+						<button type="submit" class="col-sm-offset-2 submitEditActivity pull-right" value="desc{{_id}}">Submit</button>
 					</div><br/>
 
 					<!-- Odd to include this as a form element :) -->
@@ -87,14 +87,8 @@
 						</div>
 					</div>
 				</form>
-
-					<!-- <span class="logSummary">{{ _summary }}</span>
-					<button class="saveEdits activityLogBtn" value="{{_id}}">Save</button>
-					<button class="cancelEdits activityLogBtn" value="{{_id}}">Cancel</button>
-					<span class="logDate">{{ _date }}</span> -->
 				
 			</div>
-			<!-- {{ #markdown }}{{ _desc }}{{ /markdown }} -->
 		{{ else }}
 			<div class="logSummaryDatePair">
 				<span class="logSummary">{{ _summary }}</span>
