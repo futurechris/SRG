@@ -133,26 +133,11 @@ Template.logEntry.events({
 		if(editIdx > -1)
 		{
 			editList.splice(editIdx, 1);
+			Session.set("editingLogEntries", editList);
 		}
-		Session.set("editingLogEntries", editList);
 	},
 
-	"click .saveEdits": function(event, template){
-		event.preventDefault();
-
-		// remove this thing from the edit list
-		var editList = Session.get("editingLogEntries");
-		var editIdx = editList.indexOf(event.target.value);
-		if(editIdx > -1)
-		{
-			editList.splice(editIdx, 1);
-		}
-		Session.set("editingLogEntries", editList);
-
-		// submit changes
-	},
-
-	"click .cancelEdits": function(event, template){
+	"click .cancelEdit": function(event, template){
 		event.preventDefault();
 
 		// remove this from the edit list
@@ -161,8 +146,8 @@ Template.logEntry.events({
 		if(editIdx > -1)
 		{
 			editList.splice(editIdx, 1);
+			Session.set("editingLogEntries", editList);
 		}
-		Session.set("editingLogEntries", editList);
 	},
 
 	"click .editEntry": function(event, template){
@@ -171,9 +156,8 @@ Template.logEntry.events({
 		if($.inArray(event.target.value, editList) == -1)
 		{
 			editList.push(event.target.value);
+			Session.set("editingLogEntries", editList);
 		}
-
-		Session.set("editingLogEntries", editList);
 	},
 
 	"click .displayPreview": function(event, template){
