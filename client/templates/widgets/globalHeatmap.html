@@ -1,0 +1,26 @@
+<template name="globalHeatmap">
+	<div id="global-heatmap"></div>
+	<script type="text/javascript">
+		var globalCal = new CalHeatMap();
+		var date = new Date();
+		date.setMonth(date.getMonth()-1);
+		globalCal.init({
+				itemSelector: "#global-heatmap",
+				domain: "month",
+				subDomain: "x_day",
+				cellSize: 14,
+				subDomainTextFormat: "%d",
+				range: 2,
+				start: date,
+				displayLegend: false,
+				verticalOrientation: false,
+				label: {
+					offset: { x: 0, y: 2 },
+					position: "right",
+					rotate: "right",
+					height: 10,
+					width: 18
+				}
+		});
+	</script>
+</template>

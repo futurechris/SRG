@@ -4,8 +4,10 @@
 	<div class="well">
 		<div class="col-xs-3 pull-right">
 			<center>
-			<div style="margin: 0px 0px 10px 0px">Changelog</div>
-			{{ >heatmap }}
+			<div style="margin-bottom: 2px; font-size: 0.8em;">Project Activity</div>
+			{{ #with this }}
+				{{ >heatmap }}
+			{{ /with }}
 			</center>
 		</div>
 
@@ -31,7 +33,7 @@
 			{{ #if currentUser }}
 				{{ >addLogEntry this }}
 			{{ /if }}
-			{{ #each projectActivity this 3 }}
+			{{ #each projectActivity this 0 }}
 			  {{ >logEntry }}
 			{{ /each }}
 		</div>
@@ -140,28 +142,4 @@
 			</div>
 		</form>
 	</div>
-</template>
-
-<template name="heatmap">
-	<div id="cal-heatmap"></div>
-	<script type="text/javascript">
-		var cal = new CalHeatMap();
-		var date = new Date();
-		date.setMonth(date.getMonth()-1);
-		cal.init({
-				itemSelector: "#cal-heatmap",
-				domain: "month",
-				subDomain: "x_day",
-				cellSize: 14,
-				subDomainTextFormat: "%d",
-				range: 2,
-				start: date,
-				displayLegend: false,
-				verticalOrientation: true,
-				label: {
-					offset: { x: 0, y: -5 },
-					height: 10
-				}
-		});
-	</script>
 </template>

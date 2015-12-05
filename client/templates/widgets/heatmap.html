@@ -1,0 +1,25 @@
+<template name="heatmap">
+	<div id="cal-heatmap"></div>
+	<script type="text/javascript">
+		var cal = new CalHeatMap();
+		var date = new Date();
+		date.setMonth(date.getMonth()-1);
+		cal.init({
+				itemSelector: "#cal-heatmap",
+				domain: "month",
+				subDomain: "x_day",
+				cellSize: 14,
+				subDomainTextFormat: "%d",
+				range: 2,
+				start: date,
+				displayLegend: false,
+				verticalOrientation: true,
+				label: {
+					offset: { x: 0, y: 2 },
+					position: "right",
+					rotate: "right",
+					height: 10
+				}
+		});
+	</script>
+</template>
