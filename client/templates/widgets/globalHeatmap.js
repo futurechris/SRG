@@ -44,6 +44,7 @@ Template.globalHeatmap.rendered = function(){
 				data[dateSeconds]++;
 			}
 
+			// globalCal.
 			globalCal.update(data);
 		}
 	});

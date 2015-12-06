@@ -8,12 +8,18 @@
 				itemSelector: "#global-heatmap",
 				domain: "month",
 				subDomain: "x_day",
-				cellSize: 14,
+				cellSize: 12,
 				subDomainTextFormat: "%d",
 				range: 2,
 				start: date,
 				displayLegend: false,
 				verticalOrientation: false,
+				// legendColors: {
+				// 	min: "#f4decd",
+				// 	max: "#761d15",
+				// 	empty: "#ffffff"
+				// },
+				legend: [1, 2, 4, 8, 50000],
 				label: {
 					offset: { x: 0, y: 2 },
 					position: "right",
