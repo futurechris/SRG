@@ -94,7 +94,7 @@
 			</div>
 		{{ else }}
 			<div class="logSummaryDatePair">
-				<span class="logSummary">{{ _summary }}</span>
+				<span class="logSummary"><a href="/projects/p/{{ ../_slug }}/{{ _id }}">{{ _summary }}</a></span>
 				<button class="editEntry activityLogBtn" value="{{_id}}">Edit</button>
 				<span class="logDate">{{ _date }}</span>
 			</div>
