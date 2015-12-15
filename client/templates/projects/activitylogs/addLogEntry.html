@@ -1,0 +1,40 @@
+<template name="addLogEntry">
+	<div>
+		<form role="form" class="form-horizontal">
+			<input type="hidden" name="projectid" value="{{ ../_id }}">
+
+			<div class="form-group">
+				<label class="control-label col-sm-2">Date:</label>
+				<div class="col-sm-3">
+					<input type="text" name="activitydate" class="form-control datepicker" required>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label col-sm-2">Summary:</label>
+				<div class="col-sm-10">
+					<input type="text" name="activitysummary" class="form-control" placeholder="Activity Summary" required>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label col-sm-2">Description:</label>
+				<div class="col-sm-10">
+					<textarea id="activitydesc" name="activitydesc" class="form-control" rows="5" resize="vertical" style="resize:vertical" placeholder="Activity Description" required></textarea>
+				</div>
+			</div>
+			<div>
+				<button class="col-sm-offset-2 displayPreview">Preview Description</button>
+				<button type="submit" class="col-sm-offset-2 submitActivity pull-right">Submit</button>
+			</div><br/>
+
+			<!-- Odd to include this as a form element :) -->
+			<div class="form-group">
+				<label class="control-label col-sm-2">Preview:</label>
+				<div class="col-sm-10 well">
+					{{ #markdown }}{{ getDescriptionMarkdown }}{{ /markdown }}
+				</div>
+			</div>
+		</form>
+	</div>
+</template>
