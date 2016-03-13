@@ -45,7 +45,20 @@ Template.addProject.events({
 		}
 		newProject._features = featArr;
 
-		Projects.insert(newProject);
+		var projectid = Projects.insert(newProject);
+
+
+		// and now, glue in a log entry commemorating the creation of the project
+		var newActivity = {
+			_project: projectid,
+			_date: 		(new Date()).toISOString().slice(0,10), // nice-format date
+			_summary: "Website presence established",
+			_desc: 		"On this date, this project was created here on this site. How exciting!"
+		};
+
+		ActivityLog.insert(newActivity);
+
+		// finally, go somewhere else.
 		Router.go('/projects');
 	}
 });
